@@ -63,7 +63,7 @@ public class Lesson1_2 {
     }
 
     public static void printNStr(String str, int cnt) {
-        for (int i = 0; i <= cnt; i++) {
+        for (int i = 0; i < cnt; i++) {
             System.out.println(str);
         }
     }
