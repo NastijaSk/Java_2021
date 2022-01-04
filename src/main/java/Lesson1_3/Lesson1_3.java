@@ -62,6 +62,13 @@ public class Lesson1_3 {
         System.out.print(Arrays.toString(a) + " : ");
         System.out.println(Arrays.toString(arrMinMax(a)));
 
+        int[] a3 = {2, 2, 2, 1, 2, 2, 10, 1};
+        System.out.println(checkBalance(a3));
+        int[] a4 = {1, 1, 1, 2, 1};
+        System.out.println(checkBalance(a4));
+        int[] a5 = {2, 2, 2, 1, 2, 2, 10, -1};
+        System.out.println(checkBalance(a5));
+
         System.out.println("Исходный массив: " + Arrays.toString(a));
         System.out.println("Смещение влево 1: " + Arrays.toString(arrShiftLeft(a, 1)));
         System.out.println("Смещение влево 2: " + Arrays.toString(arrShiftLeft(a, 2)));
@@ -72,6 +79,7 @@ public class Lesson1_3 {
         System.out.println("Исходный массив: " + Arrays.toString(a2));
         System.out.println("Смещение вправо 1: " + Arrays.toString(arrShiftRight(a2, 1)));
         System.out.println("Смещение вправо 4: " + Arrays.toString(arrShiftRight(a2, 4)));
+
 
     }
 
@@ -102,6 +110,31 @@ public class Lesson1_3 {
         }
 
         return min_max;
+    }
+
+    /*
+    7. ** Написать метод, в который передается не пустой одномерный целочисленный массив,
+    метод должен вернуть true,
+    если в массиве есть место, в котором сумма левой и правой части массива равны.
+     */
+    public static boolean checkBalance(int[] args) {
+        int l_sum = 0;
+        int r_sum = 0;
+        for (int i = 0; i < args.length; i++) {
+            l_sum = 0;
+            r_sum = 0;
+            for (int j = 0; j <= i; j++) {
+                l_sum = l_sum + args[j];
+            }
+            for (int k = i + 1; k < args.length; k++) {
+                r_sum = r_sum + args[k];
+            }
+            System.out.println(l_sum + " " + r_sum);
+            if (l_sum == r_sum) {
+                break;
+            }
+        }
+        return l_sum == r_sum;
     }
 
     /*
