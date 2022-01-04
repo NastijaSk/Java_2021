@@ -1,4 +1,5 @@
 package Lesson1_3;
+
 import java.util.Arrays;
 
 public class Lesson1_3 {
@@ -54,12 +55,23 @@ public class Lesson1_3 {
             System.out.println(Arrays.toString(arr4[i]));
         }
 
-        System.out.println(Arrays.toString(arrGenerate(7,10)));
+        System.out.println(Arrays.toString(arrGenerate(7, 10)));
 
-        int[] a = {1,24,567,-20,11};
+        int[] a = {1, 24, 567, -20, 11};
         System.out.print("Минимальное и максимальное значение массива ");
         System.out.print(Arrays.toString(a) + " : ");
         System.out.println(Arrays.toString(arrMinMax(a)));
+
+        System.out.println("Исходный массив: " + Arrays.toString(a));
+        System.out.println("Смещение влево 1: " + Arrays.toString(arrShiftLeft(a, 1)));
+        System.out.println("Смещение влево 2: " + Arrays.toString(arrShiftLeft(a, 2)));
+        System.out.println("Смещение влево 4: " + Arrays.toString(arrShiftLeft(a, 4)));
+
+        System.out.println();
+        int[] a2 = {1, 2, 3, 4, 5, 6, 7};
+        System.out.println("Исходный массив: " + Arrays.toString(a2));
+        System.out.println("Смещение вправо 1: " + Arrays.toString(arrShiftRight(a2, 1)));
+        System.out.println("Смещение вправо 4: " + Arrays.toString(arrShiftRight(a2, 4)));
 
     }
 
@@ -69,8 +81,7 @@ public class Lesson1_3 {
         каждая ячейка которого равна initialValue;
          */
 
-    public static int[] arrGenerate ( int len, int initValue)
-    {
+    public static int[] arrGenerate(int len, int initValue) {
         int[] arr = new int[len];
         for (int i = 0; i < arr.length; i++) {
             arr[i] = initValue;
@@ -79,17 +90,13 @@ public class Lesson1_3 {
         return arr;
     }
 
-    public static int[] arrMinMax (int[] args)
-    {
+    public static int[] arrMinMax(int[] args) {
         int[] min_max = {args[0], args[0]};
-        for(int i=0; i< args.length; i++)
-        {
-            if (args[i] < min_max[0])
-            {
+        for (int i = 0; i < args.length; i++) {
+            if (args[i] < min_max[0]) {
                 min_max[0] = args[i];
             }
-            if (args[i] > min_max[1])
-            {
+            if (args[i] > min_max[1]) {
                 min_max[1] = args[i];
             }
         }
@@ -97,5 +104,45 @@ public class Lesson1_3 {
         return min_max;
     }
 
+    /*
+     *** Написать метод, которому на вход подается одномерный массив и число n
+      (может быть положительным, или отрицательным), при этом метод должен сместить
+       все элементы массива на n позиций.
+        Элементы смещаются циклично. Для усложнения задачи нельзя пользоваться вспомогательными массивами.
+       Примеры: [ 1, 2, 3 ] при n = 1 (на один вправо) -> [ 3, 1, 2 ]; [ 3, 5, 6, 1]
+       при n = -2 (на два влево) -> [ 6, 1, 3, 5 ]. При каком n в какую сторону сдвиг можете выбирать сами.
 
+     */
+
+    public static int[] arrShiftLeft(int[] args, int n) {
+
+        for (int j = 1; j <= n; j++)  /* делаем смещение каждый раз по количеству n*/ {
+            int i0 = args[0]; /*запоминаем первое значение*/
+            for (int i = 0; i < args.length; i++) {
+                if (i + 1 < args.length) {
+                    args[i] = args[i + 1];
+                } else {
+                    args[i] = i0;
+                }
+
+            }
+        }
+        return args;
+    }
+
+    public static int[] arrShiftRight(int[] args, int n) {
+        for (int j = 1; j <= n; j++)  /* делаем смещение каждый раз по количеству n*/ {
+            int i_n = args[args.length - 1]; /*запоминаем последнее значение*/
+            for (int i = args.length - 1; i >= 0; i--) {
+                if (i > 0) {
+                    args[i] = args[i - 1];
+                } else {
+                    args[0] = i_n;
+                }
+            }
+
+        }
+
+        return args;
+    }
 }
