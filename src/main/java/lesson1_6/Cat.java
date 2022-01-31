@@ -4,23 +4,23 @@ public class Cat extends Animals {
 
     private static int catCnt = 0;
 
-    public Cat(String name, int speed_run, int speed_swim) {
-        super(name, speed_run, speed_swim);
-        this.limit_run = 200;
+    public Cat(String name, int speedRun, int speedSwim) {
+        super(name, speedRun, speedSwim);
+        this.limitRun = 200;
         /*если при создании экземпляра характеристика больше чем лимит, то ограничиваем растояние лимитом*/
-        if (speed_run > this.limit_run) {
-            this.speed_run = this.limit_run;
+        if (speedRun > this.limitRun) {
+            this.speedRun = this.limitRun;
         } else {
-            this.speed_run = speed_run;
+            this.speedRun = speedRun;
         }
-        this.speed_swim = 0;
+        this.speedSwim = 0;
         catCnt += 1;
 
     }
 
     @Override
     public void run(int length) {
-        if (length <= limit_run && speed_run >= length) {
+        if (length <= limitRun && speedRun >= length) {
             super.run(length);
         } else
             System.out.println(this.name + " не может бегать так далеко");

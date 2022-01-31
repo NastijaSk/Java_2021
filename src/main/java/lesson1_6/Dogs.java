@@ -1,16 +1,16 @@
 package lesson1_6;
 
 public class Dogs extends Animals {
-    public Dogs(String name, int speed_run, int speed_swim) {
-        super(name, speed_run, speed_swim);
+    public Dogs(String name, int speedRun, int speedSwim) {
+        super(name, speedRun, speedSwim);
         /*тут можно сделать проверку как для котов на ограничения классов*/
-        this.limit_run = 500;
-        this.limit_swim = 10;
+        this.limitRun = 500;
+        this.limitSwim = 10;
     }
 
     @Override
     public void run(int length) {
-        if (length <= limit_run && speed_run >= length) {
+        if (length <= limitRun && speedRun >= length) {
             super.run(length);
         } else
             System.out.println(this.name + " не может бегать так далеко");
@@ -18,7 +18,7 @@ public class Dogs extends Animals {
     }
 
     public void swim(int length) {
-        if (length <= limit_swim && speed_swim >= length) {
+        if (length <= limitSwim && speedSwim >= length) {
             super.swim(length);
         } else
             System.out.println(this.name + " не может плавать так далеко");
