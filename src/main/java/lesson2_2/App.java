@@ -16,16 +16,20 @@ public class App {
     public static void main(String[] args) {
 
         String[][] array = {{"1", "2", "3", "4"}, {"5", "-6", "7", "8dhg"}, {"9", "10", "11", "12"}, {"13", "14", "15", "16"}};
+        //String[][] array = {{"1", "2", "3", "4"}, {"5", "-6", "8dhg"}, {"9", "10"}, {"13", "14", "15", "16"}};
+
+
         try {
             sumArray(array);
         } catch (Exception e) {
-            System.out.println(e.getStackTrace());
+            //System.out.println(e.getStackTrace());
+            System.out.println(e.getMessage());
         }
     }
 
     static void sumArray(String[][] array) throws MyArraySizeException, MyArrayDataException {
 
-        if (array.length != 4 && array[0].length != 4) {
+        if (array.length != 4 | array[0].length != 4 | array[1].length != 4 | array[2].length != 4 | array[3].length != 4) {
             throw new MyArraySizeException();
         }
         int sum = 0;
@@ -35,7 +39,8 @@ public class App {
                 try {
                     sum += Integer.parseInt(array[i][j]);
                 } catch (NumberFormatException e) {
-                    throw new MyArrayDataException(array[i][j]);
+                    //throw new MyArrayDataException(array[i][j]);
+                    throw new MyArrayDataException(i, j);
                 }
             }
         }
