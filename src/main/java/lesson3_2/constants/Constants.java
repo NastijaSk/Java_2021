@@ -22,4 +22,6 @@ public class Constants {
 
     public static final String CLIENTS_LIST_COMMAND = "/clients";
 
+    public static final String RENAME_CLIENTS = "/rename";
+
 }

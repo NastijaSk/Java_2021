@@ -1,6 +1,6 @@
 package lesson3_2.client;
 
-import lesson7.constants.Constants;
+import lesson3_2.constants.Constants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,6 @@ public class EchoClient extends JFrame {
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
     private String login;
-
 
     public EchoClient() {
         try {
@@ -79,7 +78,6 @@ public class EchoClient extends JFrame {
         textArea.setEditable(false);
         textArea.setLineWrap(true);
         add(new JScrollPane(textArea), BorderLayout.CENTER);
-
 
         JPanel panel = new JPanel(new BorderLayout());
         JButton button = new JButton("Send");
