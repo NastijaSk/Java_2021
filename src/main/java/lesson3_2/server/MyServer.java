@@ -41,6 +41,7 @@ public class MyServer {
                 Socket socket = server.accept();
                 System.out.println("Клиент подключился");
                 new ClientHandler(this, socket);
+
             }
 
         } catch (IOException ex) {

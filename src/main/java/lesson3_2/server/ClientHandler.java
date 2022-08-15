@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Optional;
 
+import static lesson3_2.server.MessageLogs.*;
+
 /**
  * Обработчик для конкретного клиента.
  */
@@ -19,6 +21,17 @@ public class ClientHandler {
     private DataOutputStream out;
     private String name;
 
+    @Override
+    public String toString() {
+        return "ClientHandler{" +
+                "server=" + server +
+                ", socket=" + socket +
+                ", in=" + in +
+                ", out=" + out +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
     public ClientHandler(MyServer server, Socket socket) {
         try {
             this.server = server;
@@ -28,7 +41,7 @@ public class ClientHandler {
             new Thread(() -> {
                 try {
                     authentification();
-                     readMessage();
+                    readMessage();
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 } finally {
@@ -55,7 +68,15 @@ public class ClientHandler {
                     //Авторизовались
                     name = nick.get();
                     sendMessage(Constants.AUTH_OK_COMMAND + " " + nick);
-                    server.broadcastMessage(nick + " вошел в чят");
+                    createFile(name);
+                    String fileUser = readFromFile(name);
+                    String[] data = fileUser.split(";");
+                    if (fileUser != null) {
+                        for (int i = 0; i < data.length; i++) {
+                            sendMessage(data[i]);
+                        }
+                    }
+                    server.broadcastMessage(nick + " вошел в чат");
                     server.broadcastMessage(server.getActiveClients());
                     server.subscribe(this);
                     return;
@@ -83,12 +104,14 @@ public class ClientHandler {
             } else {
 
                 System.out.println("Сообщение от " + name + ": " + messageFromClient);
+
                 if (messageFromClient.equals(Constants.END_COMMAND)) {
                     System.out.println("Пользователь направил команду закрытия соединения");
 
                     break;
                 }
                 server.broadcastMessage(name + ": " + messageFromClient);
+                writterInFile(name, name + ": " + messageFromClient);
             }
         }
     }

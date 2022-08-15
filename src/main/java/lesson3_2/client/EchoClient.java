@@ -140,6 +140,7 @@ public class EchoClient extends JFrame {
                     this.login = tokens[1];
                     textArea.append("Успешно авторизован как " + login);
                     textArea.append("\n");
+
                 } else if (messageFromServer.startsWith(Constants.CLIENTS_LIST_COMMAND)) {
                     //список клиентов
                 } else {
